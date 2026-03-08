@@ -1,42 +1,50 @@
 let todos = [];
 function ajouter() {
 
-    var input = document.getElementsByTagName("input").value;
+    var inputElement = document.getElementById("ajout");
+    var val = inputElement.value;
 
 
 
     var task = {
-        id: 0,
+        id: Date.now(),
         value: input,
-        date: new Date().toISOString(),
+        date: new Date().toLocaleDateString(),
         completed: false
     };
 
     todos.push(task);
-
+    localStorage.setItem("todos", JSON.stringify(todos));
+    afficher();
     input.value = "";
 
 
-    afficher();
+
 
 }
 
 
 function afficher() {
 
-    let list = document.getElementById("list");
+    var list = document.getElementById("list");
     list.innerHTML = "";
 
-    todos.forEach(function (list) {
-
+    todos.forEach(function (item) {
         var li = document.createElement("li");
+        li.textContent = `${item.value} (${item.date})`;
+
         list.appendChild(li);
     });
-
 }
 
-localStorage.setItem();
-localStorage.getItem();
+
+function supprimer() {
+    if (confirm("supprimer")) {
+        todos = [];
+        localStorage.setItem("todos", JSON.stringify(todos));
+        afficher();
+    }
+}
 
 
 
