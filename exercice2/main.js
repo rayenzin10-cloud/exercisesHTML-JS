@@ -1,4 +1,5 @@
-let todos = [];
+//var todos = [];
+var todos = JSON.parse(localStorage.getItem("todos"));
 function ajouter() {
 
     var inputElement = document.getElementById("ajout");
@@ -62,6 +63,5 @@ function supprimer() {
 
 
 
-localStorage.setItem()
-localStorage.getItem()
+
 
